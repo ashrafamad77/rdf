@@ -13,7 +13,6 @@
     schema:productID "2794289" ;
     schema:url "/product.php?p=2794289" ;
     schema:brand <http://www.findme.com/data/brand/1083> ;
-    gr:hasStockKeepingUnit "2794289" ;
     gr:hasInventoryLevel <http://www.findme.com/data/product/2794289/inventoryLevel> ;
     schema:mainEntityOfPage 
         <https://pricespy.co.uk/phones-gps/wearables/activity-trackers/garmin-vivosmart--p2794289>,
