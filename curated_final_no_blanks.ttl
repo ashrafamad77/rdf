@@ -257,14 +257,12 @@ findme:AndroidDevice a findme:Device ;
     findme:market "secondary" ;
     findme:countryCode "gb" ;
     findme:currency "GBP" ;
-    findme:paymentOptions (
-        <http://www.findme.com/data/paymentOption/CARD>
-        <http://www.findme.com/data/paymentOption/DIRECT>
-        <http://www.findme.com/data/paymentOption/INSTALLMENT>
-        <http://www.findme.com/data/paymentOption/PREPAID>
-        <http://www.findme.com/data/paymentOption/CASH_ON_DELIVERY>
-        <http://www.findme.com/data/paymentOption/BITCOIN>
-    ) ;
+    findme:paymentOptions <http://www.findme.com/data/paymentOption/CARD> ;
+    findme:paymentOptions <http://www.findme.com/data/paymentOption/DIRECT> ;
+    findme:paymentOptions <http://www.findme.com/data/paymentOption/INSTALLMENT> ;
+    findme:paymentOptions <http://www.findme.com/data/paymentOption/PREPAID> ;
+    findme:paymentOptions <http://www.findme.com/data/paymentOption/CASH_ON_DELIVERY> ;
+    findme:paymentOptions <http://www.findme.com/data/paymentOption/BITCOIN> ;
     schema:paymentAccepted <http://www.findme.com/data/paymentProvider/PAYPAL> ;
     schema:aggregateRating <http://www.findme.com/data/store/16109/rating> .
 
