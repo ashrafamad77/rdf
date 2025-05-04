@@ -270,4 +270,4 @@ findme:AndroidDevice a findme:Device ;
 
 <http://www.findme.com/data/store/16109/rating> a schema:AggregateRating ;
     schema:ratingValue "0"^^xsd:float ;
-    schema:reviewCount "1"^^xsd:integer . 
+    schema:reviewCount "1"^^xsd:integer .
