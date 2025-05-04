@@ -1,0 +1,273 @@
+@prefix schema: <http://schema.org/> .
+@prefix gr: <http://purl.org/goodrelations/v1#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix findme: <http://www.findme.com/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+# Main Product Information
+<http://www.findme.com/data/product/2794289> a schema:Product ;
+    schema:name "Garmin Vívosmart" ;
+    schema:productID "2794289" ;
+    schema:url "/product.php?p=2794289" ;
+    schema:brand <http://www.findme.com/data/brand/1083> ;
+    gr:hasStockKeepingUnit "2794289" ;
+    gr:hasInventoryLevel <http://www.findme.com/data/product/2794289/inventoryLevel> ;
+    schema:mainEntityOfPage 
+        <https://pricespy.co.uk/phones-gps/wearables/activity-trackers/garmin-vivosmart--p2794289>,
+        <https://ledenicheur.fr/product.php?p=2794289>,
+        <https://www.prisjakt.no/product.php?p=2794289>,
+        <https://www.prisjakt.nu/produkt.php?p=2794289>,
+        <https://hintaopas.fi/product.php?p=2794289>,
+        <https://pricespy.co.nz/product.php?p=2794289>,
+        <https://prisjagt.dk/mobil-gps/wearables/aktivitetsur/garmin-vivosmart--p2794289> ;
+    
+    # Ratings
+    schema:aggregateRating <http://www.findme.com/data/product/2794289/officialRating> ;
+    schema:aggregateRating <http://www.findme.com/data/product/2794289/userRating> ;
+    
+    # Features and Compatibility
+    findme:hasFunctionalitySet <http://www.findme.com/data/product/2794289/functionalitySet> ;
+    findme:hasCompatibleDeviceSet <http://www.findme.com/data/product/2794289/compatibleDevices> ;
+    findme:hasNFC false ;
+    findme:hasDisplay true ;
+    
+    # Category
+    schema:category <http://www.findme.com/data/category/1760> ;
+    
+    # Media
+    schema:image <https://pricespy-75b8.kxcdn.com/product/standard/280/2794289.jpg> ;
+    findme:mediaCount 6 ;
+    findme:primaryImage <https://pricespy-75b8.kxcdn.com/product/standard/280/2794289.jpg> ;
+    
+    # Popularity
+    findme:totalPopularity "34582"^^xsd:integer ;
+    findme:categoryPopularityRank "35"^^xsd:integer ;
+    
+    # Offers
+    schema:offers <http://www.findme.com/data/offer/1621221444>,
+                 <http://www.findme.com/data/offer/1621221508>,
+                 <http://www.findme.com/data/offer/1621221572> ;
+    
+    # Similar Products
+    schema:isSimilarTo 
+        <http://www.findme.com/data/product/6688205>,
+        <http://www.findme.com/data/product/13794095>,
+        <http://www.findme.com/data/product/13388685>,
+        <http://www.findme.com/data/product/12304899>,
+        <http://www.findme.com/data/product/13998136>,
+        <http://www.findme.com/data/product/4215780>,
+        <http://www.findme.com/data/product/5859992>,
+        <http://www.findme.com/data/product/5709874>,
+        <http://www.findme.com/data/product/6999473>,
+        <http://www.findme.com/data/product/5860514> .
+
+# Inventory Level
+<http://www.findme.com/data/product/2794289/inventoryLevel> a gr:InventoryLevel ;
+    gr:value "in_stock" .
+
+# Ratings
+<http://www.findme.com/data/product/2794289/officialRating> a schema:AggregateRating ;
+    findme:officialRating "3.18"^^xsd:float ;
+    schema:ratingValue "3.18"^^xsd:float ;
+    schema:ratingCount "11"^^xsd:integer .
+
+<http://www.findme.com/data/product/2794289/userRating> a schema:AggregateRating ;
+    findme:userReviewScore "2.75"^^xsd:float ;
+    schema:ratingValue "2.75"^^xsd:float ;
+    schema:reviewCount "11"^^xsd:integer .
+
+# Brand Definition
+<http://www.findme.com/data/brand/1083> a schema:Brand ;
+    schema:name "Garmin" ;
+    findme:brandId "1083"^^xsd:integer ;
+    findme:isFeatured false ;
+    schema:url "/brand.php?t=1083" .
+
+# Category Hierarchy
+<http://www.findme.com/data/category/1760> a skos:Concept, schema:Category ;
+    schema:name "Bracelet connecté"@fr, "Smart bracelet"@en ;
+    findme:categoryId "1760" ;
+    schema:logo <https://pricespy-75b8.kxcdn.com/g/cat/192/aktivitetsmatare.png> ;
+    schema:url "/c/bracelet-connecte" ;
+    findme:productCollection "/c/bracelet-connecte" ;
+    findme:hasAdultContent false ;
+    skos:broader <http://www.findme.com/data/category/1942> .
+
+<http://www.findme.com/data/category/1942> a skos:Concept, schema:Category ;
+    schema:name "Dispositifs portables"@fr, "Wearable devices"@en ;
+    findme:categoryId "1942" ;
+    schema:url "/category.php?k=1942" ;
+    skos:broader <http://www.findme.com/data/category/298> ;
+    skos:narrower <http://www.findme.com/data/category/1760> .
+
+<http://www.findme.com/data/category/298> a skos:Concept, schema:Category ;
+    schema:name "Téléphones & GPS"@fr, "Phones & GPS"@en ;
+    findme:categoryId "298" ;
+    schema:url "/category.php?k=298" ;
+    skos:narrower <http://www.findme.com/data/category/1942> .
+
+# Functionality Set
+<http://www.findme.com/data/product/2794289/functionalitySet> 
+    a findme:FunctionalitySet ;
+    findme:setId "3666" ;
+    findme:forProduct <http://www.findme.com/data/product/2794289> ;
+    findme:includesFeature 
+        findme:DistanceMeter,
+        findme:SpeedCounter,
+        findme:Stopwatch,
+        findme:SleepTracking,
+        findme:CalorieCounter,
+        findme:Altimeter,
+        findme:Clock,
+        findme:Touchscreen,
+        findme:Pedometer,
+        findme:VibratingAlarm,
+        findme:LEDStatusIndicator,
+        findme:MRHChestStrapSupport,
+        findme:Clip,
+        findme:PulseOximeter .
+
+# Feature Definitions
+findme:DistanceMeter a findme:Feature ;
+    rdfs:label "Distancemètre"@fr, "Distance meter"@en .
+
+findme:SpeedCounter a findme:Feature ;
+    rdfs:label "Compteur de vitesse"@fr, "Speed counter"@en .
+
+findme:Stopwatch a findme:Feature ;
+    rdfs:label "Chronomètre"@fr, "Stopwatch"@en .
+
+findme:SleepTracking a findme:Feature ;
+    rdfs:label "Suivi du sommeil"@fr, "Sleep tracking"@en .
+
+findme:CalorieCounter a findme:Feature ;
+    rdfs:label "Compteur de calories"@fr, "Calorie counter"@en .
+
+findme:Altimeter a findme:Feature ;
+    rdfs:label "Altimètre"@fr, "Altimeter"@en .
+
+findme:Clock a findme:Feature ;
+    rdfs:label "Montre"@fr, "Clock"@en .
+
+findme:Touchscreen a findme:Feature ;
+    rdfs:label "Ecran tactile"@fr, "Touchscreen"@en .
+
+findme:Pedometer a findme:Feature ;
+    rdfs:label "Podomètre"@fr, "Pedometer"@en .
+
+findme:VibratingAlarm a findme:Feature ;
+    rdfs:label "Alarme vibrante"@fr, "Vibrating alarm"@en .
+
+findme:LEDStatusIndicator a findme:Feature ;
+    rdfs:label "Indicateur de statut (diode LED)"@fr, "LED status indicator"@en .
+
+findme:MRHChestStrapSupport a findme:Feature ;
+    rdfs:label "Sangle de poitrine MRH disponible"@fr, "MRH chest strap support"@en .
+
+findme:Clip a findme:Feature ;
+    rdfs:label "Clips"@fr, "Clip"@en .
+
+findme:PulseOximeter a findme:Feature ;
+    rdfs:label "Oxymètre de pouls"@fr, "Pulse oximeter"@en .
+
+# Compatible Devices
+<http://www.findme.com/data/product/2794289/compatibleDevices> 
+    a findme:CompatibleDeviceSet ;
+    findme:includesDevice 
+        findme:iPad,
+        findme:iPod,
+        findme:iPhone,
+        findme:AndroidDevice .
+
+findme:iPad a findme:Device ;
+    rdfs:label "iPad"@fr, "iPad"@en ;
+    owl:sameAs dbr:IPad .
+
+findme:iPod a findme:Device ;
+    rdfs:label "iPod"@fr, "iPod"@en ;
+    owl:sameAs dbr:IPod .
+
+findme:iPhone a findme:Device ;
+    rdfs:label "iPhone"@fr, "iPhone"@en ;
+    owl:sameAs dbr:IPhone .
+
+findme:AndroidDevice a findme:Device ;
+    rdfs:label "Android"@fr, "Android"@en .
+
+# Offers
+<http://www.findme.com/data/offer/1621221444> a schema:Offer ;
+    schema:name "Garmin Watch Vivosmart Purple Small" ;
+    schema:price "106.31"^^xsd:decimal ;
+    schema:priceCurrency "GBP" ;
+    schema:itemCondition schema:NewCondition ;
+    schema:availability schema:PreOrder ;
+    schema:inventoryLevel <http://www.findme.com/data/offer/1621221444/inventoryLevel> ;
+    schema:seller <http://www.findme.com/data/store/16109> ;
+    findme:shopOfferId "1621221444" ;
+    findme:primaryMarket false ;
+    findme:authorizedDealer false ;
+    findme:ourChoiceScore 5 ;
+    findme:featuredOverride "FEATURED_STATUS_UNKNOWN" .
+
+<http://www.findme.com/data/offer/1621221444/inventoryLevel> a gr:InventoryLevel ;
+    gr:value "incoming" ;
+    schema:description "Not in stock" .
+
+<http://www.findme.com/data/offer/1621221508> a schema:Offer ;
+    schema:name "Garmin Watch Vivosmart Berry Small" ;
+    schema:price "106.31"^^xsd:decimal ;
+    schema:priceCurrency "GBP" ;
+    schema:itemCondition schema:NewCondition ;
+    schema:availability schema:PreOrder ;
+    schema:inventoryLevel <http://www.findme.com/data/offer/1621221508/inventoryLevel> ;
+    schema:seller <http://www.findme.com/data/store/16109> ;
+    findme:shopOfferId "1621221508" ;
+    findme:primaryMarket false ;
+    findme:ourChoiceScore 5 .
+
+<http://www.findme.com/data/offer/1621221508/inventoryLevel> a gr:InventoryLevel ;
+    gr:value "incoming" ;
+    schema:description "Not in stock" .
+
+<http://www.findme.com/data/offer/1621221572> a schema:Offer ;
+    schema:name "Garmin Watch Vivosmart Blue Small" ;
+    schema:price "106.31"^^xsd:decimal ;
+    schema:priceCurrency "GBP" ;
+    schema:itemCondition schema:NewCondition ;
+    schema:availability schema:PreOrder ;
+    schema:inventoryLevel <http://www.findme.com/data/offer/1621221572/inventoryLevel> ;
+    schema:seller <http://www.findme.com/data/store/16109> ;
+    findme:shopOfferId "1621221572" ;
+    findme:primaryMarket false ;
+    findme:ourChoiceScore 5 .
+
+<http://www.findme.com/data/offer/1621221572/inventoryLevel> a gr:InventoryLevel ;
+    gr:value "incoming" ;
+    schema:description "Not in stock" .
+
+# Store Definition
+<http://www.findme.com/data/store/16109> a schema:Organization ;
+    schema:name "Jura Watches" ;
+    schema:url "/shop.php?f=16109" ;
+    findme:storeId "16109" ;
+    findme:featured false ;
+    findme:market "secondary" ;
+    findme:countryCode "gb" ;
+    findme:currency "GBP" ;
+    findme:paymentOptions (
+        <http://www.findme.com/data/paymentOption/CARD>
+        <http://www.findme.com/data/paymentOption/DIRECT>
+        <http://www.findme.com/data/paymentOption/INSTALLMENT>
+        <http://www.findme.com/data/paymentOption/PREPAID>
+        <http://www.findme.com/data/paymentOption/CASH_ON_DELIVERY>
+        <http://www.findme.com/data/paymentOption/BITCOIN>
+    ) ;
+    schema:paymentAccepted <http://www.findme.com/data/paymentProvider/PAYPAL> ;
+    schema:aggregateRating <http://www.findme.com/data/store/16109/rating> .
+
+<http://www.findme.com/data/store/16109/rating> a schema:AggregateRating ;
+    schema:ratingValue "0"^^xsd:float ;
+    schema:reviewCount "1"^^xsd:integer . 
