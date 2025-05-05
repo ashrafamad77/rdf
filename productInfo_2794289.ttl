@@ -46,9 +46,8 @@
     findme:categoryPopularityRank "35"^^xsd:integer ;
     
     # Offers
-    schema:offers <http://www.findme.com/data/offer/1621221444>,
-                 <http://www.findme.com/data/offer/1621221508>,
-                 <http://www.findme.com/data/offer/1621221572> ;
+    schema:offers <http://www.findme.com/data/offer/05700964>,
+                 <http://www.findme.com/data/offer/05700966> ;
     
     # Similar Products
     schema:isSimilarTo 
@@ -196,75 +195,149 @@ findme:iPhone a findme:Device ;
 findme:AndroidDevice a findme:Device ;
     rdfs:label "Android"@fr, "Android"@en .
 
-# Offers
-<http://www.findme.com/data/offer/1621221444> a schema:Offer ;
-    schema:name "Garmin Watch Vivosmart Purple Small" ;
-    schema:price "106.31"^^xsd:decimal ;
-    schema:priceCurrency "GBP" ;
+# 🟣 Offer: Garmin VIVOSMART - Small Purple
+<http://www.findme.com/data/offer/05700964> a schema:Offer ;
+    schema:name "Garmin VIVOSMART - Taille Small Violet" ;
+    schema:price "176.45"^^xsd:decimal ;
+    findme:priceExcludingShipping "172.95"^^xsd:decimal ;
+    schema:priceCurrency "EUR" ;
     schema:itemCondition schema:NewCondition ;
-    schema:availability schema:PreOrder ;
-    schema:inventoryLevel <http://www.findme.com/data/offer/1621221444/inventoryLevel> ;
-    schema:seller <http://www.findme.com/data/store/16109> ;
-    findme:shopOfferId "1621221444" ;
-    findme:primaryMarket false ;
+    schema:availability schema:InStock ;
+    schema:inventoryLevel <http://www.findme.com/data/offer/05700964/inventoryLevel> ;
+    schema:seller <http://www.findme.com/data/store/28578> ;
+    findme:shopOfferId "05700964" ;
+    findme:ourChoiceScore 4 ;
     findme:authorizedDealer false ;
-    findme:ourChoiceScore 5 ;
-    findme:featuredOverride "FEATURED_STATUS_UNKNOWN" .
+    findme:primaryMarket true ;
+    findme:externalUri <https://ledenicheur.fr/go-to-shop/28578/offer/05700964?client_id=1331&bc=1> ;
+    findme:shippingCost "3.5"^^xsd:decimal ;
+    findme:size "Small" ;
+    findme:color "Purple" ;
+    findme:sizeSystem "Unknown" ;
+    findme:shippingSustainability "SUSTAINABILITY_UNKNOWN" ;
+    findme:shippingEligibility "ELIGIBILITY_UNKNOWN" ;
+    findme:shippingMethod null ;
+    findme:shippingCarrier null ;
+    findme:shippingDeliveryDays null .
 
-<http://www.findme.com/data/offer/1621221444/inventoryLevel> a gr:InventoryLevel ;
-    gr:value "incoming" ;
-    schema:description "Not in stock" .
+<http://www.findme.com/data/offer/05700964/inventoryLevel> a schema:QuantitativeValue ;
+    schema:value "in_stock" .
 
-<http://www.findme.com/data/offer/1621221508> a schema:Offer ;
-    schema:name "Garmin Watch Vivosmart Berry Small" ;
-    schema:price "106.31"^^xsd:decimal ;
-    schema:priceCurrency "GBP" ;
+# 🔵 Offer: Garmin VIVOSMART - Small Blue
+<http://www.findme.com/data/offer/05700966> a schema:Offer ;
+    schema:name "Garmin VIVOSMART - Taille Small Bleu" ;
+    schema:price "200.45"^^xsd:decimal ;
+    findme:priceExcludingShipping "196.95"^^xsd:decimal ;
+    schema:priceCurrency "EUR" ;
     schema:itemCondition schema:NewCondition ;
-    schema:availability schema:PreOrder ;
-    schema:inventoryLevel <http://www.findme.com/data/offer/1621221508/inventoryLevel> ;
-    schema:seller <http://www.findme.com/data/store/16109> ;
-    findme:shopOfferId "1621221508" ;
-    findme:primaryMarket false ;
-    findme:ourChoiceScore 5 .
+    schema:availability schema:InStock ;
+    schema:inventoryLevel <http://www.findme.com/data/offer/05700966/inventoryLevel> ;
+    schema:seller <http://www.findme.com/data/store/28578> ;
+    findme:shopOfferId "05700966" ;
+    findme:ourChoiceScore 4 ;
+    findme:authorizedDealer false ;
+    findme:primaryMarket true ;
+    findme:externalUri <https://ledenicheur.fr/go-to-shop/28578/offer/05700966?client_id=1331&bc=1> ;
+    findme:shippingCost "3.5"^^xsd:decimal ;
+    findme:size "Small" ;
+    findme:color "Blue" ;
+    findme:sizeSystem "Unknown" ;
+    findme:shippingSustainability "SUSTAINABILITY_UNKNOWN" ;
+    findme:shippingEligibility "ELIGIBILITY_UNKNOWN" ;
+    findme:shippingMethod null ;
+    findme:shippingCarrier null ;
+    findme:shippingDeliveryDays null .
 
-<http://www.findme.com/data/offer/1621221508/inventoryLevel> a gr:InventoryLevel ;
-    gr:value "incoming" ;
-    schema:description "Not in stock" .
+<http://www.findme.com/data/offer/05700966/inventoryLevel> a schema:QuantitativeValue ;
+    schema:value "in_stock" .
 
-<http://www.findme.com/data/offer/1621221572> a schema:Offer ;
-    schema:name "Garmin Watch Vivosmart Blue Small" ;
-    schema:price "106.31"^^xsd:decimal ;
-    schema:priceCurrency "GBP" ;
-    schema:itemCondition schema:NewCondition ;
-    schema:availability schema:PreOrder ;
-    schema:inventoryLevel <http://www.findme.com/data/offer/1621221572/inventoryLevel> ;
-    schema:seller <http://www.findme.com/data/store/16109> ;
-    findme:shopOfferId "1621221572" ;
-    findme:primaryMarket false ;
-    findme:ourChoiceScore 5 .
-
-<http://www.findme.com/data/offer/1621221572/inventoryLevel> a gr:InventoryLevel ;
-    gr:value "incoming" ;
-    schema:description "Not in stock" .
-
-# Store Definition
-<http://www.findme.com/data/store/16109> a schema:Organization ;
-    schema:name "Jura Watches" ;
-    schema:url "/shop.php?f=16109" ;
-    findme:storeId "16109" ;
-    findme:featured false ;
-    findme:market "secondary" ;
-    findme:countryCode "gb" ;
-    findme:currency "GBP" ;
+# 🏪 Store: Grosbill (shared seller) with Payment Options and Rating
+<http://www.findme.com/data/store/28578> a schema:Organization ;
+    schema:name "Grosbill" ;
+    schema:url <https://ledenicheur.fr/shop.php?f=28578> ;
+    findme:storeId 28578 ;
+    findme:countryCode "FR" ;
+    findme:currency "EUR" ;
+    findme:market "primary" ;
+    findme:primaryMarket "fr" ;
+    findme:featured true ;
+    findme:hasLogo true ;
+    schema:logo <https://pricespy-75b8.kxcdn.com/g/ftg_logos/sizes/176/8/28578.png> ;
+    findme:generalInformation "Le meilleur de l'high tech",
+                              "Retrait en 10 min en magasin",
+                              "Paiement sécurisé" ;
+    schema:aggregateRating <http://www.findme.com/data/store/28578/rating> ;
+    findme:marketplace false ;
+    schema:paymentAccepted <http://www.findme.com/data/paymentProvider/PAYPAL> ;
     findme:paymentOptions <http://www.findme.com/data/paymentOption/CARD> ;
     findme:paymentOptions <http://www.findme.com/data/paymentOption/DIRECT> ;
     findme:paymentOptions <http://www.findme.com/data/paymentOption/INSTALLMENT> ;
     findme:paymentOptions <http://www.findme.com/data/paymentOption/PREPAID> ;
     findme:paymentOptions <http://www.findme.com/data/paymentOption/CASH_ON_DELIVERY> ;
-    findme:paymentOptions <http://www.findme.com/data/paymentOption/BITCOIN> ;
-    schema:paymentAccepted <http://www.findme.com/data/paymentProvider/PAYPAL> ;
-    schema:aggregateRating <http://www.findme.com/data/store/16109/rating> .
+    findme:paymentOptions <http://www.findme.com/data/paymentOption/BITCOIN> .
 
-<http://www.findme.com/data/store/16109/rating> a schema:AggregateRating ;
+<http://www.findme.com/data/store/28578/rating> a schema:AggregateRating ;
     schema:ratingValue "0"^^xsd:float ;
     schema:reviewCount "1"^^xsd:integer .
+
+# Imaginary Info for Similar Products (No New Nodes, Just Info)
+
+<http://www.findme.com/data/product/6688205> a schema:Product ;
+    schema:name "Garmin Smartband Pro X" ;
+    schema:productID "6688205" ;
+    schema:url "/product.php?p=6688205" ;
+    schema:description "A premium fitness band with advanced tracking features." .
+
+<http://www.findme.com/data/product/13794095> a schema:Product ;
+    schema:name "Garmin Fitness Tracker Plus" ;
+    schema:productID "13794095" ;
+    schema:url "/product.php?p=13794095" ;
+    schema:description "An advanced fitness tracker designed for outdoor enthusiasts." .
+
+<http://www.findme.com/data/product/13388685> a schema:Product ;
+    schema:name "Fitbit Charge 5" ;
+    schema:productID "13388685" ;
+    schema:url "/product.php?p=13388685" ;
+    schema:description "A highly versatile and popular fitness tracker." .
+
+<http://www.findme.com/data/product/12304899> a schema:Product ;
+    schema:name "Xiaomi Mi Band 7" ;
+    schema:productID "12304899" ;
+    schema:url "/product.php?p=12304899" ;
+    schema:description "Affordable fitness band with solid tracking features." .
+
+<http://www.findme.com/data/product/13998136> a schema:Product ;
+    schema:name "Huawei Band 6 Pro" ;
+    schema:productID "13998136" ;
+    schema:url "/product.php?p=13998136" ;
+    schema:description "A sleek fitness band with a focus on heart rate monitoring." .
+
+<http://www.findme.com/data/product/4215780> a schema:Product ;
+    schema:name "Polar Ignite 2" ;
+    schema:productID "4215780" ;
+    schema:url "/product.php?p=4215780" ;
+    schema:description "A premium fitness watch with advanced sleep tracking." .
+
+<http://www.findme.com/data/product/5859992> a schema:Product ;
+    schema:name "Withings Steel HR Sport" ;
+    schema:productID "5859992" ;
+    schema:url "/product.php?p=5859992" ;
+    schema:description "Stylish hybrid smartwatch with health tracking features." .
+
+<http://www.findme.com/data/product/5709874> a schema:Product ;
+    schema:name "Samsung Galaxy Fit 2" ;
+    schema:productID "5709874" ;
+    schema:url "/product.php?p=5709874" ;
+    schema:description "Affordable fitness tracker with good features for the price." .
+
+<http://www.findme.com/data/product/6999473> a schema:Product ;
+    schema:name "Amazfit Bip U Pro" ;
+    schema:productID "6999473" ;
+    schema:url "/product.php?p=6999473" ;
+    schema:description "Budget-friendly fitness watch with built-in GPS." .
+
+<http://www.findme.com/data/product/5860514> a schema:Product ;
+    schema:name "Fitbit Inspire 2" ;
+    schema:productID "5860514" ;
+    schema:url "/product.php?p=5860514" ;
+    schema:description "Popular fitness tracker with a focus on simplicity and performance." .
