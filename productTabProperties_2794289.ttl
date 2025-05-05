@@ -155,5 +155,4 @@ findme:iPhone a findme:Device ;
     owl:sameAs dbr:IPhone .
 
 findme:AndroidDevice a findme:Device ;
-    rdfs:label "Android"@fr, "Android"@en ;
-    owl:sameAs dbr:Android_(operating_system) .
+    rdfs:label "Android"@fr, "Android"@en .
