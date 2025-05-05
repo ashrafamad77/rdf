@@ -6,10 +6,12 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dbr: <http://dbpedia.org/resource/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 # Main Product Information
 <http://www.findme.com/data/product/2794289> a schema:Product ;
     schema:name "Garmin Vívosmart" ;
+    rdfs:label "Garmin Vívosmart" ;
     schema:productID "2794289" ;
     schema:url "/product.php?p=2794289" ;
     schema:brand <http://www.findme.com/data/brand/1083> ;
@@ -64,15 +66,18 @@
 
 # Inventory Level
 <http://www.findme.com/data/product/2794289/inventoryLevel> a gr:InventoryLevel ;
+    rdfs:label "Inventory Level - In Stock" ;
     gr:value "in_stock" .
 
 # Ratings
 <http://www.findme.com/data/product/2794289/officialRating> a schema:AggregateRating ;
+    rdfs:label "Official Rating: 3.18/5" ;
     findme:officialRating "3.18"^^xsd:float ;
     schema:ratingValue "3.18"^^xsd:float ;
     schema:ratingCount "11"^^xsd:integer .
 
 <http://www.findme.com/data/product/2794289/userRating> a schema:AggregateRating ;
+    rdfs:label "User Rating: 2.75/5" ;
     findme:userReviewScore "2.75"^^xsd:float ;
     schema:ratingValue "2.75"^^xsd:float ;
     schema:reviewCount "11"^^xsd:integer .
@@ -80,6 +85,7 @@
 # Brand Definition
 <http://www.findme.com/data/brand/1083> a schema:Brand ;
     schema:name "Garmin" ;
+    rdfs:label "Garmin" ;
     findme:brandId "1083"^^xsd:integer ;
     findme:isFeatured false ;
     schema:url "/brand.php?t=1083" .
@@ -87,6 +93,7 @@
 # Category Hierarchy
 <http://www.findme.com/data/category/1760> a skos:Concept, schema:Category ;
     schema:name "Bracelet connecté"@fr, "Smart bracelet"@en ;
+    rdfs:label "Smart bracelet" ;
     findme:categoryId "1760" ;
     schema:logo <https://pricespy-75b8.kxcdn.com/g/cat/192/aktivitetsmatare.png> ;
     schema:url "/c/bracelet-connecte" ;
@@ -96,6 +103,7 @@
 
 <http://www.findme.com/data/category/1942> a skos:Concept, schema:Category ;
     schema:name "Dispositifs portables"@fr, "Wearable devices"@en ;
+    rdfs:label "Wearable devices" ;
     findme:categoryId "1942" ;
     schema:url "/category.php?k=1942" ;
     skos:broader <http://www.findme.com/data/category/298> ;
@@ -103,6 +111,7 @@
 
 <http://www.findme.com/data/category/298> a skos:Concept, schema:Category ;
     schema:name "Téléphones & GPS"@fr, "Phones & GPS"@en ;
+    rdfs:label "Phones & GPS" ;
     findme:categoryId "298" ;
     schema:url "/category.php?k=298" ;
     skos:narrower <http://www.findme.com/data/category/1942> .
@@ -110,6 +119,7 @@
 # Functionality Set
 <http://www.findme.com/data/product/2794289/functionalitySet> 
     a findme:FunctionalitySet ;
+    rdfs:label "Garmin Vívosmart Features" ;
     findme:setId "3666" ;
     findme:forProduct <http://www.findme.com/data/product/2794289> ;
     findme:includesFeature 
@@ -128,52 +138,53 @@
         findme:Clip,
         findme:PulseOximeter .
 
-# Feature Definitions
+# Feature Definitions - Already have rdfs:label so these are good
 findme:DistanceMeter a findme:Feature ;
-    rdfs:label "Distancemètre"@fr, "Distance meter"@en .
+    rdfs:label "Distance meter"@en, "Distancemètre"@fr .
 
 findme:SpeedCounter a findme:Feature ;
-    rdfs:label "Compteur de vitesse"@fr, "Speed counter"@en .
+    rdfs:label "Speed counter"@en, "Compteur de vitesse"@fr .
 
 findme:Stopwatch a findme:Feature ;
-    rdfs:label "Chronomètre"@fr, "Stopwatch"@en .
+    rdfs:label "Stopwatch"@en, "Chronomètre"@fr .
 
 findme:SleepTracking a findme:Feature ;
-    rdfs:label "Suivi du sommeil"@fr, "Sleep tracking"@en .
+    rdfs:label "Sleep tracking"@en, "Suivi du sommeil"@fr .
 
 findme:CalorieCounter a findme:Feature ;
-    rdfs:label "Compteur de calories"@fr, "Calorie counter"@en .
+    rdfs:label "Calorie counter"@en, "Compteur de calories"@fr .
 
 findme:Altimeter a findme:Feature ;
-    rdfs:label "Altimètre"@fr, "Altimeter"@en .
+    rdfs:label "Altimeter"@en, "Altimètre"@fr .
 
 findme:Clock a findme:Feature ;
-    rdfs:label "Montre"@fr, "Clock"@en .
+    rdfs:label "Clock"@en, "Montre"@fr .
 
 findme:Touchscreen a findme:Feature ;
-    rdfs:label "Ecran tactile"@fr, "Touchscreen"@en .
+    rdfs:label "Touchscreen"@en, "Ecran tactile"@fr .
 
 findme:Pedometer a findme:Feature ;
-    rdfs:label "Podomètre"@fr, "Pedometer"@en .
+    rdfs:label "Pedometer"@en, "Podomètre"@fr .
 
 findme:VibratingAlarm a findme:Feature ;
-    rdfs:label "Alarme vibrante"@fr, "Vibrating alarm"@en .
+    rdfs:label "Vibrating alarm"@en, "Alarme vibrante"@fr .
 
 findme:LEDStatusIndicator a findme:Feature ;
-    rdfs:label "Indicateur de statut (diode LED)"@fr, "LED status indicator"@en .
+    rdfs:label "LED status indicator"@en, "Indicateur de statut (diode LED)"@fr .
 
 findme:MRHChestStrapSupport a findme:Feature ;
-    rdfs:label "Sangle de poitrine MRH disponible"@fr, "MRH chest strap support"@en .
+    rdfs:label "MRH chest strap support"@en, "Sangle de poitrine MRH disponible"@fr .
 
 findme:Clip a findme:Feature ;
-    rdfs:label "Clips"@fr, "Clip"@en .
+    rdfs:label "Clip"@en, "Clips"@fr .
 
 findme:PulseOximeter a findme:Feature ;
-    rdfs:label "Oxymètre de pouls"@fr, "Pulse oximeter"@en .
+    rdfs:label "Pulse oximeter"@en, "Oxymètre de pouls"@fr .
 
 # Compatible Devices
 <http://www.findme.com/data/product/2794289/compatibleDevices> 
     a findme:CompatibleDeviceSet ;
+    rdfs:label "Compatible Devices for Vívosmart" ;
     findme:includesDevice 
         findme:iPad,
         findme:iPod,
@@ -181,23 +192,24 @@ findme:PulseOximeter a findme:Feature ;
         findme:AndroidDevice .
 
 findme:iPad a findme:Device ;
-    rdfs:label "iPad"@fr, "iPad"@en ;
+    rdfs:label "iPad"@en, "iPad"@fr ;
     owl:sameAs dbr:IPad .
 
 findme:iPod a findme:Device ;
-    rdfs:label "iPod"@fr, "iPod"@en ;
+    rdfs:label "iPod"@en, "iPod"@fr ;
     owl:sameAs dbr:IPod .
 
 findme:iPhone a findme:Device ;
-    rdfs:label "iPhone"@fr, "iPhone"@en ;
+    rdfs:label "iPhone"@en, "iPhone"@fr ;
     owl:sameAs dbr:IPhone .
 
 findme:AndroidDevice a findme:Device ;
-    rdfs:label "Android"@fr, "Android"@en .
+    rdfs:label "Android"@en, "Android"@fr .
 
 # 🟣 Offer: Garmin VIVOSMART - Small Purple
 <http://www.findme.com/data/offer/05700964> a schema:Offer ;
     schema:name "Garmin VIVOSMART - Taille Small Violet" ;
+    rdfs:label "Garmin VIVOSMART - Small Purple" ;
     schema:price "176.45"^^xsd:decimal ;
     findme:priceExcludingShipping "172.95"^^xsd:decimal ;
     schema:priceCurrency "EUR" ;
@@ -216,16 +228,18 @@ findme:AndroidDevice a findme:Device ;
     findme:sizeSystem "Unknown" ;
     findme:shippingSustainability "SUSTAINABILITY_UNKNOWN" ;
     findme:shippingEligibility "ELIGIBILITY_UNKNOWN" ;
-    findme:shippingMethod null ;
-    findme:shippingCarrier null ;
-    findme:shippingDeliveryDays null .
+    findme:shippingMethod "" ;
+    findme:shippingCarrier "" ;
+    findme:shippingDeliveryDays "" .
 
 <http://www.findme.com/data/offer/05700964/inventoryLevel> a schema:QuantitativeValue ;
+    rdfs:label "Purple Model Inventory Level" ;
     schema:value "in_stock" .
 
 # 🔵 Offer: Garmin VIVOSMART - Small Blue
 <http://www.findme.com/data/offer/05700966> a schema:Offer ;
     schema:name "Garmin VIVOSMART - Taille Small Bleu" ;
+    rdfs:label "Garmin VIVOSMART - Small Blue" ;
     schema:price "200.45"^^xsd:decimal ;
     findme:priceExcludingShipping "196.95"^^xsd:decimal ;
     schema:priceCurrency "EUR" ;
@@ -244,16 +258,18 @@ findme:AndroidDevice a findme:Device ;
     findme:sizeSystem "Unknown" ;
     findme:shippingSustainability "SUSTAINABILITY_UNKNOWN" ;
     findme:shippingEligibility "ELIGIBILITY_UNKNOWN" ;
-    findme:shippingMethod null ;
-    findme:shippingCarrier null ;
-    findme:shippingDeliveryDays null .
+    findme:shippingMethod "" ;
+    findme:shippingCarrier "" ;
+    findme:shippingDeliveryDays "" .
 
 <http://www.findme.com/data/offer/05700966/inventoryLevel> a schema:QuantitativeValue ;
+    rdfs:label "Blue Model Inventory Level" ;
     schema:value "in_stock" .
 
 # 🏪 Store: Grosbill (shared seller) with Payment Options and Rating
 <http://www.findme.com/data/store/28578> a schema:Organization ;
     schema:name "Grosbill" ;
+    rdfs:label "Grosbill" ;
     schema:url <https://ledenicheur.fr/shop.php?f=28578> ;
     findme:storeId 28578 ;
     findme:countryCode "FR" ;
@@ -263,9 +279,9 @@ findme:AndroidDevice a findme:Device ;
     findme:featured true ;
     findme:hasLogo true ;
     schema:logo <https://pricespy-75b8.kxcdn.com/g/ftg_logos/sizes/176/8/28578.png> ;
-    findme:generalInformation "Le meilleur de l'high tech",
-                              "Retrait en 10 min en magasin",
-                              "Paiement sécurisé" ;
+    findme:generalInformation "Le meilleur de high tech" ;
+    findme:generalInformation "Retrait en 10 min en magasin" ;
+    findme:generalInformation "Paiement sécurisé" ;
     schema:aggregateRating <http://www.findme.com/data/store/28578/rating> ;
     findme:marketplace false ;
     schema:paymentAccepted <http://www.findme.com/data/paymentProvider/PAYPAL> ;
@@ -277,67 +293,86 @@ findme:AndroidDevice a findme:Device ;
     findme:paymentOptions <http://www.findme.com/data/paymentOption/BITCOIN> .
 
 <http://www.findme.com/data/store/28578/rating> a schema:AggregateRating ;
+    rdfs:label "Grosbill Rating" ;
     schema:ratingValue "0"^^xsd:float ;
     schema:reviewCount "1"^^xsd:integer .
 
-# Imaginary Info for Similar Products (No New Nodes, Just Info)
+# Payment options - adding labels
+<http://www.findme.com/data/paymentProvider/PAYPAL> rdfs:label "PayPal" .
+<http://www.findme.com/data/paymentOption/CARD> rdfs:label "Card Payment" .
+<http://www.findme.com/data/paymentOption/DIRECT> rdfs:label "Direct Payment" .
+<http://www.findme.com/data/paymentOption/INSTALLMENT> rdfs:label "Installment Payment" .
+<http://www.findme.com/data/paymentOption/PREPAID> rdfs:label "Prepaid Payment" .
+<http://www.findme.com/data/paymentOption/CASH_ON_DELIVERY> rdfs:label "Cash on Delivery" .
+<http://www.findme.com/data/paymentOption/BITCOIN> rdfs:label "Bitcoin Payment" .
 
+# Similar Products with labels
 <http://www.findme.com/data/product/6688205> a schema:Product ;
     schema:name "Garmin Smartband Pro X" ;
+    rdfs:label "Garmin Smartband Pro X" ;
     schema:productID "6688205" ;
     schema:url "/product.php?p=6688205" ;
     schema:description "A premium fitness band with advanced tracking features." .
 
 <http://www.findme.com/data/product/13794095> a schema:Product ;
     schema:name "Garmin Fitness Tracker Plus" ;
+    rdfs:label "Garmin Fitness Tracker Plus" ;
     schema:productID "13794095" ;
     schema:url "/product.php?p=13794095" ;
     schema:description "An advanced fitness tracker designed for outdoor enthusiasts." .
 
 <http://www.findme.com/data/product/13388685> a schema:Product ;
     schema:name "Fitbit Charge 5" ;
+    rdfs:label "Fitbit Charge 5" ;
     schema:productID "13388685" ;
     schema:url "/product.php?p=13388685" ;
     schema:description "A highly versatile and popular fitness tracker." .
 
 <http://www.findme.com/data/product/12304899> a schema:Product ;
     schema:name "Xiaomi Mi Band 7" ;
+    rdfs:label "Xiaomi Mi Band 7" ;
     schema:productID "12304899" ;
     schema:url "/product.php?p=12304899" ;
     schema:description "Affordable fitness band with solid tracking features." .
 
 <http://www.findme.com/data/product/13998136> a schema:Product ;
     schema:name "Huawei Band 6 Pro" ;
+    rdfs:label "Huawei Band 6 Pro" ;h
     schema:productID "13998136" ;
     schema:url "/product.php?p=13998136" ;
     schema:description "A sleek fitness band with a focus on heart rate monitoring." .
 
 <http://www.findme.com/data/product/4215780> a schema:Product ;
     schema:name "Polar Ignite 2" ;
+    rdfs:label "Polar Ignite 2" ;
     schema:productID "4215780" ;
     schema:url "/product.php?p=4215780" ;
     schema:description "A premium fitness watch with advanced sleep tracking." .
 
 <http://www.findme.com/data/product/5859992> a schema:Product ;
     schema:name "Withings Steel HR Sport" ;
+    rdfs:label "Withings Steel HR Sport" ;
     schema:productID "5859992" ;
     schema:url "/product.php?p=5859992" ;
     schema:description "Stylish hybrid smartwatch with health tracking features." .
 
 <http://www.findme.com/data/product/5709874> a schema:Product ;
     schema:name "Samsung Galaxy Fit 2" ;
+    rdfs:label "Samsung Galaxy Fit 2" ;
     schema:productID "5709874" ;
     schema:url "/product.php?p=5709874" ;
     schema:description "Affordable fitness tracker with good features for the price." .
 
 <http://www.findme.com/data/product/6999473> a schema:Product ;
     schema:name "Amazfit Bip U Pro" ;
+    rdfs:label "Amazfit Bip U Pro" ;
     schema:productID "6999473" ;
     schema:url "/product.php?p=6999473" ;
     schema:description "Budget-friendly fitness watch with built-in GPS." .
 
 <http://www.findme.com/data/product/5860514> a schema:Product ;
     schema:name "Fitbit Inspire 2" ;
+    rdfs:label "Fitbit Inspire 2" ;
     schema:productID "5860514" ;
     schema:url "/product.php?p=5860514" ;
     schema:description "Popular fitness tracker with a focus on simplicity and performance." .
