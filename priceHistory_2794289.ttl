@@ -45,7 +45,69 @@
     <http://www.findme.com/data/observedAt> <http://www.findme.com/data/shop/27457> ;
     <http://www.findme.com/data/forProduct> <http://www.findme.com/data/product/2794289> .
 
-# ... (other price points follow the same pattern with full URLs)
+<http://www.findme.com/data/pricePoint3> a <http://www.findme.com/data/PriceObservation> ;
+    rdfs:label "Price Point on 2025-02-17 at 134.3€" ;
+    <http://www.findme.com/data/observedOn> "2025-02-17T09:49:24.166Z"^^xsd:dateTime ;
+    <http://www.findme.com/data/priceValue> "134.3"^^xsd:decimal ;
+    <http://www.findme.com/data/isActive> true ;
+    <http://www.findme.com/data/observedAt> <http://www.findme.com/data/shop/28188> ;
+    <http://www.findme.com/data/forProduct> <http://www.findme.com/data/product/2794289> .
+
+<http://www.findme.com/data/pricePoint4> a <http://www.findme.com/data/PriceObservation> ;
+    rdfs:label "Price Point on 2025-02-18 at 134.99€" ;
+    <http://www.findme.com/data/observedOn> "2025-02-18T10:35:48.987Z"^^xsd:dateTime ;
+    <http://www.findme.com/data/priceValue> "134.99"^^xsd:decimal ;
+    <http://www.findme.com/data/isActive> true ;
+    <http://www.findme.com/data/observedAt> <http://www.findme.com/data/shop/27457> ;
+    <http://www.findme.com/data/forProduct> <http://www.findme.com/data/product/2794289> .
+
+<http://www.findme.com/data/pricePoint5> a <http://www.findme.com/data/PriceObservation> ;
+    rdfs:label "Price Point on 2025-02-22 at 134.06€" ;
+    <http://www.findme.com/data/observedOn> "2025-02-22T10:10:12.112Z"^^xsd:dateTime ;
+    <http://www.findme.com/data/priceValue> "134.06"^^xsd:decimal ;
+    <http://www.findme.com/data/isActive> true ;
+    <http://www.findme.com/data/observedAt> <http://www.findme.com/data/shop/27457> ;
+    <http://www.findme.com/data/forProduct> <http://www.findme.com/data/product/2794289> .
+
+<http://www.findme.com/data/pricePoint6> a <http://www.findme.com/data/PriceObservation> ;
+    rdfs:label "Price Point on 2025-02-24 at 134.99€" ;
+    <http://www.findme.com/data/observedOn> "2025-02-24T12:34:52.128Z"^^xsd:dateTime ;
+    <http://www.findme.com/data/priceValue> "134.99"^^xsd:decimal ;
+    <http://www.findme.com/data/isActive> true ;
+    <http://www.findme.com/data/observedAt> <http://www.findme.com/data/shop/27457> ;
+    <http://www.findme.com/data/forProduct> <http://www.findme.com/data/product/2794289> .
+
+<http://www.findme.com/data/pricePoint7> a <http://www.findme.com/data/PriceObservation> ;
+    rdfs:label "Price Point on 2025-03-01 at 134.06€" ;
+    <http://www.findme.com/data/observedOn> "2025-03-01T11:23:07.866Z"^^xsd:dateTime ;
+    <http://www.findme.com/data/priceValue> "134.06"^^xsd:decimal ;
+    <http://www.findme.com/data/isActive> true ;
+    <http://www.findme.com/data/observedAt> <http://www.findme.com/data/shop/27457> ;
+    <http://www.findme.com/data/forProduct> <http://www.findme.com/data/product/2794289> .
+
+<http://www.findme.com/data/pricePoint8> a <http://www.findme.com/data/PriceObservation> ;
+    rdfs:label "Price Point on 2025-03-03 at 134.99€" ;
+    <http://www.findme.com/data/observedOn> "2025-03-03T14:02:07.205Z"^^xsd:dateTime ;
+    <http://www.findme.com/data/priceValue> "134.99"^^xsd:decimal ;
+    <http://www.findme.com/data/isActive> true ;
+    <http://www.findme.com/data/observedAt> <http://www.findme.com/data/shop/27457> ;
+    <http://www.findme.com/data/forProduct> <http://www.findme.com/data/product/2794289> .
+
+<http://www.findme.com/data/pricePoint9> a <http://www.findme.com/data/PriceObservation> ;
+    rdfs:label "Price Point on 2025-03-08 at 134.06€" ;
+    <http://www.findme.com/data/observedOn> "2025-03-08T13:36:08.509Z"^^xsd:dateTime ;
+    <http://www.findme.com/data/priceValue> "134.06"^^xsd:decimal ;
+    <http://www.findme.com/data/isActive> true ;
+    <http://www.findme.com/data/observedAt> <http://www.findme.com/data/shop/27457> ;
+    <http://www.findme.com/data/forProduct> <http://www.findme.com/data/product/2794289> .
+
+<http://www.findme.com/data/pricePoint10> a <http://www.findme.com/data/PriceObservation> ;
+    rdfs:label "Price Point on 2025-03-11 at 137.51€" ;
+    <http://www.findme.com/data/observedOn> "2025-03-11T01:02:00.931Z"^^xsd:dateTime ;
+    <http://www.findme.com/data/priceValue> "137.51"^^xsd:decimal ;
+    <http://www.findme.com/data/isActive> true ;
+    <http://www.findme.com/data/observedAt> <http://www.findme.com/data/shop/27457> ;
+    <http://www.findme.com/data/forProduct> <http://www.findme.com/data/product/2794289> .
 
 <http://www.findme.com/data/pricePoint11> a <http://www.findme.com/data/PriceObservation> ;
     rdfs:label "Price Point on 2025-03-14 at 137.55€" ;
