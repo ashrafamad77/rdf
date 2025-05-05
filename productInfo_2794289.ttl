@@ -337,7 +337,7 @@ findme:AndroidDevice a findme:Device ;
 
 <http://www.findme.com/data/product/13998136> a schema:Product ;
     schema:name "Huawei Band 6 Pro" ;
-    rdfs:label "Huawei Band 6 Pro" ;h
+    rdfs:label "Huawei Band 6 Pro" ;
     schema:productID "13998136" ;
     schema:url "/product.php?p=13998136" ;
     schema:description "A sleek fitness band with a focus on heart rate monitoring." .
