@@ -5,7 +5,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 # Product
-ex:product/2794289 a gr:ProductOrService ;
+<http://www.findme.com/data/product/2794289> a gr:ProductOrService ;
     rdfs:label "Product: Montre Garmin Vívosmart 5 [Taille 122/188 mm]" ;
     ex:hasPriceHistory 
         ex:pricePoint1, ex:pricePoint2, ex:pricePoint3, ex:pricePoint4,
