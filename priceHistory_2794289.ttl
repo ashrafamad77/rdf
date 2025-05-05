@@ -13,11 +13,11 @@
         ex:pricePoint9, ex:pricePoint10, ex:pricePoint11 .
 
 # Shops
-ex:shop/28188 a gr:BusinessEntity ;
+<http://www.findme.com/data/shop/28188> a gr:BusinessEntity ;
     foaf:name "Direct-Volley" ;
     rdfs:label "Shop: Direct-Volley" .
 
-ex:shop/27457 a gr:BusinessEntity ;
+<http://www.findme.com/data/shop/27457> a gr:BusinessEntity ;
     foaf:name "Foot Store" ;
     rdfs:label "Shop: Foot Store" .
 
