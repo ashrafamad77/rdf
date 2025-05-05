@@ -1,0 +1,159 @@
+@prefix schema: <http://schema.org/> .
+@prefix findme: <http://www.findme.com/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+
+<http://www.findme.com/data/product/2794289> a schema:Product ;
+    schema:weight "18.7"^^xsd:decimal ;
+    findme:publicationYear "2014" ;
+    findme:hasDisplay true ;
+    findme:bluetoothVersion "4.0" ;
+    findme:hasBluetooth true ;
+    findme:hasNFC false ;
+    findme:hasGPS false ;
+    findme:waterproof true ;
+    findme:fullyWaterproof true ;
+    findme:batteryType "Li-Ion" ;
+    findme:batteryLife "7"^^xsd:decimal ;
+    findme:usbCharging true ;
+    findme:hasWristband true ;
+    findme:wristbandWidth "34.4"^^xsd:decimal ;
+    findme:wristbandThickness "3.5"^^xsd:decimal ;
+    findme:hasFunctionalitySet <http://www.findme.com/data/product/2794289/functionalitySet> ;
+    findme:hasColorSet <http://www.findme.com/data/product/2794289/colorSet> ;
+    findme:hasCompatibleDeviceSet <http://www.findme.com/data/product/2794289/compatibleDevices> .
+
+### FUNCTIONALITY SET ###
+<http://www.findme.com/data/product/2794289/functionalitySet> 
+    a findme:FunctionalitySet ;
+    findme:setId "3666" ;
+    findme:includesFeature 
+        findme:DistanceMeter,
+        findme:SpeedCounter,
+        findme:Stopwatch,
+        findme:SleepTracking,
+        findme:CalorieCounter,
+        findme:Altimeter,
+        findme:Clock,
+        findme:Touchscreen,
+        findme:Pedometer,
+        findme:VibratingAlarm,
+        findme:LEDStatusIndicator,
+        findme:MRHChestStrapSupport,
+        findme:Clip,
+        findme:PulseOximeter .
+
+### COLOR SET ###
+<http://www.findme.com/data/product/2794289/colorSet> 
+    a findme:ColorSet ;
+    findme:setId "4924" ;
+    findme:includesColor 
+        findme:ColorBlack,
+        findme:ColorWhite,
+        findme:ColorSilver,
+        findme:ColorGray,
+        findme:ColorBlue,
+        findme:ColorRed,
+        findme:ColorGreen,
+        findme:ColorPink,
+        findme:ColorPurple .
+
+### COMPATIBLE DEVICES ###
+<http://www.findme.com/data/product/2794289/compatibleDevices> 
+    a findme:CompatibleDeviceSet ;
+    findme:setId "10982" ;
+    findme:includesDevice 
+        findme:iPad,
+        findme:iPod,
+        findme:iPhone,
+        findme:AndroidDevice .
+
+### FEATURE DEFINITIONS ###
+findme:DistanceMeter a findme:Feature ;
+    rdfs:label "Distancemètre"@fr, "Distance meter"@en .
+
+findme:SpeedCounter a findme:Feature ;
+    rdfs:label "Compteur de vitesse"@fr, "Speed counter"@en .
+
+findme:Stopwatch a findme:Feature ;
+    rdfs:label "Chronomètre"@fr, "Stopwatch"@en .
+
+findme:SleepTracking a findme:Feature ;
+    rdfs:label "Suivi du sommeil"@fr, "Sleep tracking"@en .
+
+findme:CalorieCounter a findme:Feature ;
+    rdfs:label "Compteur de calories"@fr, "Calorie counter"@en .
+
+findme:Altimeter a findme:Feature ;
+    rdfs:label "Altimètre"@fr, "Altimeter"@en .
+
+findme:Clock a findme:Feature ;
+    rdfs:label "Montre"@fr, "Clock"@en .
+
+findme:Touchscreen a findme:Feature ;
+    rdfs:label "Ecran tactile"@fr, "Touchscreen"@en .
+
+findme:Pedometer a findme:Feature ;
+    rdfs:label "Podomètre"@fr, "Pedometer"@en .
+
+findme:VibratingAlarm a findme:Feature ;
+    rdfs:label "Alarme vibrante"@fr, "Vibrating alarm"@en .
+
+findme:LEDStatusIndicator a findme:Feature ;
+    rdfs:label "Indicateur de statut (diode LED)"@fr, "LED status indicator"@en .
+
+findme:MRHChestStrapSupport a findme:Feature ;
+    rdfs:label "Sangle de poitrine MRH disponible"@fr, "MRH chest strap support"@en .
+
+findme:Clip a findme:Feature ;
+    rdfs:label "Clips"@fr, "Clip"@en .
+
+findme:PulseOximeter a findme:Feature ;
+    rdfs:label "Oxymètre de pouls"@fr, "Pulse oximeter"@en .
+
+### COLOR DEFINITIONS ###
+findme:ColorBlack a findme:Color ;
+    rdfs:label "Noir"@fr, "Black"@en .
+
+findme:ColorWhite a findme:Color ;
+    rdfs:label "Blanc"@fr, "White"@en .
+
+findme:ColorSilver a findme:Color ;
+    rdfs:label "Argent"@fr, "Silver"@en .
+
+findme:ColorGray a findme:Color ;
+    rdfs:label "Gris"@fr, "Gray"@en .
+
+findme:ColorBlue a findme:Color ;
+    rdfs:label "Bleu"@fr, "Blue"@en .
+
+findme:ColorRed a findme:Color ;
+    rdfs:label "Rouge"@fr, "Red"@en .
+
+findme:ColorGreen a findme:Color ;
+    rdfs:label "Vert"@fr, "Green"@en .
+
+findme:ColorPink a findme:Color ;
+    rdfs:label "Rose"@fr, "Pink"@en .
+
+findme:ColorPurple a findme:Color ;
+    rdfs:label "Violet"@fr, "Purple"@en .
+
+### DEVICE DEFINITIONS ###
+findme:iPad a findme:Device ;
+    rdfs:label "iPad"@fr, "iPad"@en ;
+    owl:sameAs dbr:IPad .
+
+findme:iPod a findme:Device ;
+    rdfs:label "iPod"@fr, "iPod"@en ;
+    owl:sameAs dbr:IPod .
+
+findme:iPhone a findme:Device ;
+    rdfs:label "iPhone"@fr, "iPhone"@en ;
+    owl:sameAs dbr:IPhone .
+
+findme:AndroidDevice a findme:Device ;
+    rdfs:label "Android"@fr, "Android"@en ;
+    owl:sameAs dbr:Android_(operating_system) .
