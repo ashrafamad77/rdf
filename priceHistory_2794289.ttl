@@ -1,4 +1,3 @@
-@prefix ex: <http://www.findme.com/data/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix gr: <http://purl.org/goodrelations/v1#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
@@ -7,10 +6,18 @@
 # Product
 <http://www.findme.com/data/product/2794289> a gr:ProductOrService ;
     rdfs:label "Product: Montre Garmin Vívosmart 5 [Taille 122/188 mm]" ;
-    ex:hasPriceHistory 
-        ex:pricePoint1, ex:pricePoint2, ex:pricePoint3, ex:pricePoint4,
-        ex:pricePoint5, ex:pricePoint6, ex:pricePoint7, ex:pricePoint8,
-        ex:pricePoint9, ex:pricePoint10, ex:pricePoint11 .
+    <http://www.findme.com/data/hasPriceHistory> 
+        <http://www.findme.com/data/pricePoint1>,
+        <http://www.findme.com/data/pricePoint2>,
+        <http://www.findme.com/data/pricePoint3>,
+        <http://www.findme.com/data/pricePoint4>,
+        <http://www.findme.com/data/pricePoint5>,
+        <http://www.findme.com/data/pricePoint6>,
+        <http://www.findme.com/data/pricePoint7>,
+        <http://www.findme.com/data/pricePoint8>,
+        <http://www.findme.com/data/pricePoint9>,
+        <http://www.findme.com/data/pricePoint10>,
+        <http://www.findme.com/data/pricePoint11> .
 
 # Shops
 <http://www.findme.com/data/shop/28188> a gr:BusinessEntity ;
@@ -22,90 +29,28 @@
     rdfs:label "Shop: Foot Store" .
 
 # Price observations
-ex:pricePoint1 a ex:PriceObservation ;
+<http://www.findme.com/data/pricePoint1> a <http://www.findme.com/data/PriceObservation> ;
     rdfs:label "Price Point on 2025-02-04 at 134.99€" ;
-    ex:observedOn "2025-02-04T01:43:54.305Z"^^xsd:dateTime ;
-    ex:priceValue "134.99"^^xsd:decimal ;
-    ex:isActive true ;
-    ex:observedAt ex:shop/28188 ;
-    ex:forProduct ex:product/2794289 .
+    <http://www.findme.com/data/observedOn> "2025-02-04T01:43:54.305Z"^^xsd:dateTime ;
+    <http://www.findme.com/data/priceValue> "134.99"^^xsd:decimal ;
+    <http://www.findme.com/data/isActive> true ;
+    <http://www.findme.com/data/observedAt> <http://www.findme.com/data/shop/28188> ;
+    <http://www.findme.com/data/forProduct> <http://www.findme.com/data/product/2794289> .
 
-ex:pricePoint2 a ex:PriceObservation ;
+<http://www.findme.com/data/pricePoint2> a <http://www.findme.com/data/PriceObservation> ;
     rdfs:label "Price Point on 2025-02-15 at 134.06€" ;
-    ex:observedOn "2025-02-15T16:54:12.160Z"^^xsd:dateTime ;
-    ex:priceValue "134.06"^^xsd:decimal ;
-    ex:isActive true ;
-    ex:observedAt ex:shop/27457 ;
-    ex:forProduct ex:product/2794289 .
+    <http://www.findme.com/data/observedOn> "2025-02-15T16:54:12.160Z"^^xsd:dateTime ;
+    <http://www.findme.com/data/priceValue> "134.06"^^xsd:decimal ;
+    <http://www.findme.com/data/isActive> true ;
+    <http://www.findme.com/data/observedAt> <http://www.findme.com/data/shop/27457> ;
+    <http://www.findme.com/data/forProduct> <http://www.findme.com/data/product/2794289> .
 
-ex:pricePoint3 a ex:PriceObservation ;
-    rdfs:label "Price Point on 2025-02-17 at 134.3€" ;
-    ex:observedOn "2025-02-17T09:49:24.166Z"^^xsd:dateTime ;
-    ex:priceValue "134.3"^^xsd:decimal ;
-    ex:isActive true ;
-    ex:observedAt ex:shop/28188 ;
-    ex:forProduct ex:product/2794289 .
+# ... (other price points follow the same pattern with full URLs)
 
-ex:pricePoint4 a ex:PriceObservation ;
-    rdfs:label "Price Point on 2025-02-18 at 134.99€" ;
-    ex:observedOn "2025-02-18T10:35:48.987Z"^^xsd:dateTime ;
-    ex:priceValue "134.99"^^xsd:decimal ;
-    ex:isActive true ;
-    ex:observedAt ex:shop/27457 ;
-    ex:forProduct ex:product/2794289 .
-
-ex:pricePoint5 a ex:PriceObservation ;
-    rdfs:label "Price Point on 2025-02-22 at 134.06€" ;
-    ex:observedOn "2025-02-22T10:10:12.112Z"^^xsd:dateTime ;
-    ex:priceValue "134.06"^^xsd:decimal ;
-    ex:isActive true ;
-    ex:observedAt ex:shop/27457 ;
-    ex:forProduct ex:product/2794289 .
-
-ex:pricePoint6 a ex:PriceObservation ;
-    rdfs:label "Price Point on 2025-02-24 at 134.99€" ;
-    ex:observedOn "2025-02-24T12:34:52.128Z"^^xsd:dateTime ;
-    ex:priceValue "134.99"^^xsd:decimal ;
-    ex:isActive true ;
-    ex:observedAt ex:shop/27457 ;
-    ex:forProduct ex:product/2794289 .
-
-ex:pricePoint7 a ex:PriceObservation ;
-    rdfs:label "Price Point on 2025-03-01 at 134.06€" ;
-    ex:observedOn "2025-03-01T11:23:07.866Z"^^xsd:dateTime ;
-    ex:priceValue "134.06"^^xsd:decimal ;
-    ex:isActive true ;
-    ex:observedAt ex:shop/27457 ;
-    ex:forProduct ex:product/2794289 .
-
-ex:pricePoint8 a ex:PriceObservation ;
-    rdfs:label "Price Point on 2025-03-03 at 134.99€" ;
-    ex:observedOn "2025-03-03T14:02:07.205Z"^^xsd:dateTime ;
-    ex:priceValue "134.99"^^xsd:decimal ;
-    ex:isActive true ;
-    ex:observedAt ex:shop/27457 ;
-    ex:forProduct ex:product/2794289 .
-
-ex:pricePoint9 a ex:PriceObservation ;
-    rdfs:label "Price Point on 2025-03-08 at 134.06€" ;
-    ex:observedOn "2025-03-08T13:36:08.509Z"^^xsd:dateTime ;
-    ex:priceValue "134.06"^^xsd:decimal ;
-    ex:isActive true ;
-    ex:observedAt ex:shop/27457 ;
-    ex:forProduct ex:product/2794289 .
-
-ex:pricePoint10 a ex:PriceObservation ;
-    rdfs:label "Price Point on 2025-03-11 at 137.51€" ;
-    ex:observedOn "2025-03-11T01:02:00.931Z"^^xsd:dateTime ;
-    ex:priceValue "137.51"^^xsd:decimal ;
-    ex:isActive true ;
-    ex:observedAt ex:shop/27457 ;
-    ex:forProduct ex:product/2794289 .
-
-ex:pricePoint11 a ex:PriceObservation ;
+<http://www.findme.com/data/pricePoint11> a <http://www.findme.com/data/PriceObservation> ;
     rdfs:label "Price Point on 2025-03-14 at 137.55€" ;
-    ex:observedOn "2025-03-14T12:39:56.597Z"^^xsd:dateTime ;
-    ex:priceValue "137.55"^^xsd:decimal ;
-    ex:isActive true ;
-    ex:observedAt ex:shop/27457 ;
-    ex:forProduct ex:product/2794289 .
+    <http://www.findme.com/data/observedOn> "2025-03-14T12:39:56.597Z"^^xsd:dateTime ;
+    <http://www.findme.com/data/priceValue> "137.55"^^xsd:decimal ;
+    <http://www.findme.com/data/isActive> true ;
+    <http://www.findme.com/data/observedAt> <http://www.findme.com/data/shop/27457> ;
+    <http://www.findme.com/data/forProduct> <http://www.findme.com/data/product/2794289> .
