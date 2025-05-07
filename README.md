@@ -1,10 +1,10 @@
 ### Description of the content ###
-example target (manually curated) RDF files. This shows our modelling approach for three dimensions of the product : 
+1) Example target RDF files (manually curated). This shows our modelling approach for three dimensions of the product : 
 - details (with some core properties)
 - price history
 - longer version of core properties
 
-it also includes the python script to automate the manual data modelling, and the prompt used to generate the script using AI. 
+2) python script to automate the manual data modelling, and the prompt used to generate the script using AI. 
 - json_to_rdf_batch.py (used for the product details)
 
 ### PROMPT USED ###
