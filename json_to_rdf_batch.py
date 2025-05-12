@@ -18,6 +18,7 @@ PREFIXES = '''@prefix schema: <http://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n\n'''
 
+
 def safe(val, default=None):
     return val if val is not None else default
 
@@ -54,6 +55,9 @@ def get_category_iri(cid):
 def get_offer_iri(oid):
     return f'<http://www.findme.com/data/offer/{oid}>'
 
+def get_alternative_price_iri(oid):
+    return f'<http://www.findme.com/data/alternativePrice/{oid}>'
+
 def get_store_iri(sid):
     return f'<http://www.findme.com/data/store/{sid}>'
 
@@ -81,44 +85,51 @@ def get_user_rating_iri(pid):
 def get_offer_inventory_iri(oid):
     return f'<http://www.findme.com/data/offer/{oid}/inventoryLevel>'
 
+def get_alternative_price_inventory_iri(oid):
+    return f'<http://www.findme.com/data/alternativePrice/{oid}/inventoryLevel>'
+
 def get_store_rating_iri(sid):
     return f'<http://www.findme.com/data/store/{sid}/rating>'
 
 def render_category_hierarchy(category):
-    # Recursively render category and parents
     lines = []
-    if not category:
+    if not category or 'path' not in category:
         return lines
-    cid = category.get('id')
-    name = category.get('name')
-    logo = category.get('logo')
-    pathName = category.get('pathName')
-    productCollection = category.get('productCollection')
-    hasAdultContent = category.get('hasAdultContent')
-    broader = None
-    if 'path' in category and len(category['path']) > 1:
-        # The last in path is the current, the one before is parent
-        parent = category['path'][-2]
-        broader = get_category_iri(parent['id'])
-    lines.append(f'{get_category_iri(cid)} a skos:Concept, schema:Category ;')
-    lines.append(f'    schema:name {qstr(name)}@fr, {qstr(name)}@en ;')
-    lines.append(f'    rdfs:label {qstr(name)} ;')
-    lines.append(f'    findme:categoryId {qstr(cid)} ;')
-    if logo:
-        lines.append(f'    schema:logo <{logo}> ;')
-    if pathName:
-        lines.append(f'    schema:url {qstr(pathName)} ;')
-    if productCollection:
-        lines.append(f'    findme:productCollection {qstr(productCollection)} ;')
-    if hasAdultContent is not None:
-        lines.append(f'    findme:hasAdultContent {str(hasAdultContent).lower()} ;')
-    if broader:
-        lines.append(f'    skos:broader {broader} ;')
-    lines[-1] = lines[-1].rstrip(' ;') + ' .\n'
-    # Recursively render parent
-    if 'path' in category and len(category['path']) > 1:
-        parent = category['path'][-2]
-        lines += render_category_hierarchy(parent)
+
+    path = category['path']
+    for i, cat in enumerate(path):
+        cid = cat.get('id')
+        name = cat.get('name')
+        pathName = cat.get('pathName')
+        iri = get_category_iri(cid)
+
+        lines.append(f'{iri} a skos:Concept, schema:Category ;')
+        lines.append(f'    schema:name {qstr(name)}@fr, {qstr(name)}@en ;')
+        lines.append(f'    rdfs:label {qstr(name)} ;')
+        lines.append(f'    findme:categoryId {qstr(cid)} ;')
+
+        # Current category may only have full data (like logo, adultContent, etc.)
+        if i == len(path) - 1:
+            if 'logo' in category and category['logo']:
+                lines.append(f'    schema:logo <{category["logo"]}> ;')
+            if 'productCollection' in category and category['productCollection']:
+                lines.append(f'    findme:productCollection {qstr(category["productCollection"])} ;')
+            if 'hasAdultContent' in category:
+                lines.append(f'    findme:hasAdultContent {str(category["hasAdultContent"]).lower()} ;')
+            if 'pathName' in category and category['pathName']:
+                lines.append(f'    schema:url {qstr(category["pathName"])} ;')
+        else:
+            if pathName:
+                lines.append(f'    schema:url {qstr(pathName)} ;')
+
+        # Add skos:broader link if not the root
+        if i > 0:
+            parent_iri = get_category_iri(path[i - 1]['id'])
+            lines.append(f'    skos:broader {parent_iri} ;')
+
+        # Close this concept
+        lines[-1] = lines[-1].rstrip(' ;') + ' .\n'
+
     return lines
 
 def render_feature_nodes(features):
@@ -161,19 +172,112 @@ def render_similar_products(similar_products):
             lines[-1] = lines[-1].rstrip(' ;') + ' .\n'
     return lines
 
-def render_payment_options():
-    options = [
-        ('CARD', 'Card Payment'),
-        ('DIRECT', 'Direct Payment'),
-        ('INSTALLMENT', 'Installment Payment'),
-        ('PREPAID', 'Prepaid Payment'),
-        ('CASH_ON_DELIVERY', 'Cash on Delivery'),
-        ('BITCOIN', 'Bitcoin Payment')
-    ]
+def render_dynamic_payment_options(encountered_options):
     lines = []
-    for opt_id, opt_label in options:
-        lines.append(f'{get_payment_option_iri(opt_id)} rdfs:label {qstr(opt_label)} .\n')
+    for opt in sorted(encountered_options):
+        label = opt.replace('_', ' ').title()  # e.g., 'CASH_ON_DELIVERY' → 'Cash On Delivery'
+        lines.append(f'{get_payment_option_iri(opt)} rdfs:label {qstr(label)} .\n')
     return lines
+
+def process_offer_inventory(oid, stock, name, is_alternative=False):
+    lines = []
+    inventory_iri = get_alternative_price_inventory_iri(oid) if is_alternative else get_offer_inventory_iri(oid)
+    
+    lines.append(f'{inventory_iri} a schema:QuantitativeValue ;')
+    lines.append(f'    rdfs:label {qstr(name + " Inventory Level")} ;')
+
+    status = stock.get('status', '').lower()
+    status_text = stock.get('statusText')
+
+    # Add status and statusText under the findme prefix for later mapping
+    if status:
+        lines.append(f'    findme:stockStatus {qstr(status)} ;')
+
+    if status_text:
+        lines.append(f'    findme:stockStatusText {qstr(status_text)} ;')
+
+    # Add fallback literal value for human-readable status (for debugging)
+    lines.append(f'    schema:value {qstr(status)} .\n')
+    
+    return lines
+
+def process_offer_or_alternative_price(oid, price_data, is_alternative=False):
+    lines = []
+    iri_func = get_alternative_price_iri if is_alternative else get_offer_iri
+    offer_iri = iri_func(oid)
+    
+    # Type and basic info
+    rdf_type = "schema:Offer" if not is_alternative else "findme:AlternativePrice"
+    lines.append(f'{offer_iri} a {rdf_type} ;')
+    lines.append(f'    schema:name {qstr(price_data.get("name", ""))} ;')
+    lines.append(f'    rdfs:label {qstr(price_data.get("name", ""))} ;')
+    
+    # Process pricing info
+    if price_data.get('price'):
+        price_info = price_data['price']
+        if price_info.get('inclShipping') is not None:
+            lines.append(f'    schema:price "{price_info["inclShipping"]}"^^xsd:decimal ;')
+        if price_info.get('exclShipping') is not None:
+            lines.append(f'    findme:priceExcludingShipping "{price_info["exclShipping"]}"^^xsd:decimal ;')
+    
+    # Condition
+    if price_data.get('condition'):
+        lines.append(f'    schema:itemCondition schema:NewCondition ;')
+    
+    # Inventory
+    inventory_iri = get_alternative_price_inventory_iri(oid) if is_alternative else get_offer_inventory_iri(oid)
+    lines.append(f'    schema:inventoryLevel {inventory_iri} ;')
+    
+    # Store reference (only for main offers, not for alternative prices)
+    if not is_alternative and price_data.get('store'):
+        store = price_data['store']
+        lines.append(f'    schema:seller {get_store_iri(store["id"])} ;')
+    
+    # Common properties
+    lines.append(f'    findme:shopOfferId {qstr(oid)} ;')
+    if price_data.get('ourChoiceScore') is not None:
+        lines.append(f'    findme:ourChoiceScore {price_data["ourChoiceScore"]} ;')
+    if price_data.get('authorizedDealer') is not None:
+        lines.append(f'    findme:authorizedDealer {str(price_data["authorizedDealer"]).lower()} ;')
+    if price_data.get('primaryMarket') is not None:
+        lines.append(f'    findme:primaryMarket {str(price_data["primaryMarket"]).lower()} ;')
+    if price_data.get('externalUri'):
+        lines.append(f'    findme:externalUri <{price_data["externalUri"]}> ;')
+    
+    # Shipping details
+    shipping = price_data.get('shipping', {})
+    if shipping and isinstance(shipping, dict):
+        cheapest = shipping.get('cheapest', {})
+        if cheapest and isinstance(cheapest, dict):
+            if cheapest.get('shippingCost') is not None:
+                lines.append(f'    findme:shippingCost "{cheapest["shippingCost"]}"^^xsd:decimal ;')
+            if cheapest.get('sustainability'):
+                lines.append(f'    findme:shippingSustainability {qstr(cheapest["sustainability"])} ;')
+            if cheapest.get('eligibility'):
+                lines.append(f'    findme:shippingEligibility {qstr(cheapest["eligibility"])} ;')
+            if cheapest.get('deliveryMethod'):
+                lines.append(f'    findme:shippingMethod {qstr(cheapest["deliveryMethod"])} ;')
+            if cheapest.get('carrier'):
+                lines.append(f'    findme:shippingCarrier {qstr(cheapest["carrier"])} ;')
+            if cheapest.get('deliveryDays'):
+                lines.append(f'    findme:shippingDeliveryDays {qstr(cheapest["deliveryDays"])} ;')
+    
+    # Variant info
+    variant = price_data.get('variantInfo', {})
+    if variant.get('size'):
+        lines.append(f'    findme:size {qstr(variant["size"])} ;')
+    if variant.get('colors'):
+        colors = variant['colors']
+        if isinstance(colors, list) and colors:
+            lines.append(f'    findme:color {qstr(colors[0])} ;')
+    if variant.get('sizeSystem'):
+        lines.append(f'    findme:sizeSystem {qstr(variant["sizeSystem"])} ;')
+    
+    # Close the entity
+    lines[-1] = lines[-1].rstrip(' ;') + ' .\n'
+    
+    return lines
+
 
 def process_file(json_path):
     with open(json_path, 'r', encoding='utf-8') as f:
@@ -181,7 +285,9 @@ def process_file(json_path):
     product = data['data']['product']
     pid = product['id']
     ttl_lines = [PREFIXES]
-    
+
+    encountered_payment_options = set()  # <--- This is per-file scoped
+
     # Main Product Node
     main_iri = get_main_product_iri(pid)
     ttl_lines.append(f'{main_iri} a schema:Product ;')
@@ -196,7 +302,7 @@ def process_file(json_path):
         ttl_lines.append(f'    schema:brand {get_brand_iri(brand["id"])} ;')
     
     # Inventory
-    ttl_lines.append(f'    gr:hasInventoryLevel {get_inventory_iri(pid)} ;')
+    #ttl_lines.append(f'    gr:hasInventoryLevel {get_inventory_iri(pid)} ;')
     
     # MainEntityOfPage
     hrefs = product.get('hrefLang', [])
@@ -219,9 +325,15 @@ def process_file(json_path):
     core_props = product.get('coreProperties', {}).get('nodes', [])
     feature_labels = []
     device_labels = []
-    nfc_val = None
-    display_val = None
+    
     for prop in core_props:
+
+        if prop['__typename'] == "PropertyBoolean":
+            # Ex: findme:hasDisplay true    
+            value, name = str(prop.get('boolean')).lower(), prop['name']
+            name = "".join([n.capitalize() for n in name.split()])
+            ttl_lines.append(f'    findme:has{name} {value} ;')
+
         if prop['__typename'] == 'PropertyList' and prop['name'].lower().startswith('fonctionnalit'):
             # Features
             feature_labels = [(v, v) for v in prop.get('values', [])]
@@ -230,14 +342,7 @@ def process_file(json_path):
             # Compatible devices
             device_labels = [(v, v, None) for v in prop.get('values', [])]
             ttl_lines.append(f'    findme:hasCompatibleDeviceSet {get_compatible_devices_iri(pid)} ;')
-        elif prop['__typename'] == 'PropertyBoolean' and prop['name'].lower() == 'nfc':
-            nfc_val = prop.get('boolean')
-        elif prop['__typename'] == 'PropertyBoolean' and 'affichage' in prop['name'].lower():
-            display_val = prop.get('boolean')
-    if nfc_val is not None:
-        ttl_lines.append(f'    findme:hasNFC {str(nfc_val).lower()} ;')
-    if display_val is not None:
-        ttl_lines.append(f'    findme:hasDisplay {str(display_val).lower()} ;')
+    
     
     # Category
     category = product.get('category')
@@ -259,6 +364,14 @@ def process_file(json_path):
     if pop.get('inCategory') is not None:
         ttl_lines.append(f'    findme:categoryPopularityRank "{pop["inCategory"]}"^^xsd:integer ;')
     
+     # Product Inventory
+    stock_status = product.get('stockStatus', 'in_stock')  # Default to 'in_stock' if missing
+    status_text = product.get('stockText', '')  # If applicable, you can add stockText or similar
+    ttl_lines.append(f'    findme:productStockStatus {qstr(stock_status)} ;')
+    if status_text:
+        ttl_lines.append(f'    findme:productStockStatusText {qstr(status_text)} ;')
+
+
     # Offers
     offers = []
     offer_ids = set()
@@ -279,13 +392,8 @@ def process_file(json_path):
     
     # End product node
     ttl_lines[-1] = ttl_lines[-1].rstrip(' ;') + ' .\n'
-    
-    # Inventory Level Node
-    stock_status = product.get('stockStatus', 'in_stock')
-    ttl_lines.append(f'{get_inventory_iri(pid)} a gr:InventoryLevel ;')
-    ttl_lines.append(f'    rdfs:label "Inventory Level - In Stock" ;')
-    ttl_lines.append(f'    gr:value {qstr(stock_status)} .\n')
-    
+
+
     # Ratings Nodes
     if agg:
         ttl_lines.append(f'{get_official_rating_iri(pid)} a schema:AggregateRating ;')
@@ -335,78 +443,46 @@ def process_file(json_path):
         # Device Nodes
         ttl_lines += render_device_nodes([(d[0], d[0], None) for d in device_labels])
     
-    # Offers
+    # Process main offers and their alternative prices
     for offer in product.get('prices', {}).get('nodes', []):
         oid = offer.get('shopOfferId')
         if not oid:
             continue
-        ttl_lines.append(f'{get_offer_iri(oid)} a schema:Offer ;')
-        ttl_lines.append(f'    schema:name {qstr(offer.get("name", ""))} ;')
-        ttl_lines.append(f'    rdfs:label {qstr(offer.get("name", ""))} ;')
-        price = offer.get('price', {})
-        if price.get('inclShipping') is not None:
-            ttl_lines.append(f'    schema:price "{price["inclShipping"]}"^^xsd:decimal ;')
-        if price.get('exclShipping') is not None:
-            ttl_lines.append(f'    findme:priceExcludingShipping "{price["exclShipping"]}"^^xsd:decimal ;')
-        if offer.get('condition'):
-            ttl_lines.append(f'    schema:itemCondition schema:NewCondition ;')
-        if offer.get('stock', {}).get('status'):
-            ttl_lines.append(f'    schema:availability schema:InStock ;')
-        ttl_lines.append(f'    schema:inventoryLevel {get_offer_inventory_iri(oid)} ;')
-        store = offer.get('store')
-        if store:
-            ttl_lines.append(f'    schema:seller {get_store_iri(store["id"])} ;')
-        ttl_lines.append(f'    findme:shopOfferId {qstr(oid)} ;')
-        if offer.get('ourChoiceScore') is not None:
-            ttl_lines.append(f'    findme:ourChoiceScore {offer["ourChoiceScore"]} ;')
-        if offer.get('authorizedDealer') is not None:
-            ttl_lines.append(f'    findme:authorizedDealer {str(offer["authorizedDealer"]).lower()} ;')
-        if offer.get('primaryMarket') is not None:
-            ttl_lines.append(f'    findme:primaryMarket {str(offer["primaryMarket"]).lower()} ;')
-        if offer.get('externalUri'):
-            ttl_lines.append(f'    findme:externalUri <{offer["externalUri"]}> ;')
         
-        # Shipping details
-        shipping = offer.get('shipping', {})
-        if shipping and isinstance(shipping, dict):
-            cheapest = shipping.get('cheapest', {})
-            if cheapest and isinstance(cheapest, dict):
-                if cheapest.get('shippingCost') is not None:
-                    ttl_lines.append(f'    findme:shippingCost "{cheapest["shippingCost"]}"^^xsd:decimal ;')
-                if cheapest.get('sustainability'):
-                    ttl_lines.append(f'    findme:shippingSustainability {qstr(cheapest["sustainability"])} ;')
-                if cheapest.get('eligibility'):
-                    ttl_lines.append(f'    findme:shippingEligibility {qstr(cheapest["eligibility"])} ;')
-                if cheapest.get('deliveryMethod'):
-                    ttl_lines.append(f'    findme:shippingMethod {qstr(cheapest["deliveryMethod"])} ;')
-                if cheapest.get('carrier'):
-                    ttl_lines.append(f'    findme:shippingCarrier {qstr(cheapest["carrier"])} ;')
-                if cheapest.get('deliveryDays'):
-                    ttl_lines.append(f'    findme:shippingDeliveryDays {qstr(cheapest["deliveryDays"])} ;')
+        # Process main offer
+        ttl_lines += process_offer_or_alternative_price(oid, offer)
         
-        # Variant info
-        variant = offer.get('variantInfo', {})
-        if variant.get('size'):
-            ttl_lines.append(f'    findme:size {qstr(variant["size"])} ;')
-        if variant.get('colors'):
-            colors = variant['colors']
-            if isinstance(colors, list) and colors:
-                ttl_lines.append(f'    findme:color {qstr(colors[0])} ;')
-        if variant.get('sizeSystem'):
-            ttl_lines.append(f'    findme:sizeSystem {qstr(variant["sizeSystem"])} ;')
-        
-        ttl_lines[-1] = ttl_lines[-1].rstrip(' ;') + ' .\n'
-        
-        # Offer Inventory Node
+        # Process inventory for main offer
         stock = offer.get('stock', {})
-        ttl_lines.append(f'{get_offer_inventory_iri(oid)} a schema:QuantitativeValue ;')
-        ttl_lines.append(f'    rdfs:label "{offer.get("name", "")} Inventory Level" ;')
-        if stock.get('status'):
-            ttl_lines.append(f'    schema:value {qstr(stock["status"])} .\n')
-        else:
-            ttl_lines[-1] = ttl_lines[-1].rstrip(' ;') + ' .\n'
+        ttl_lines += process_offer_inventory(oid, stock, offer.get('name', ''))
+
+        # Process alternative prices if they exist
+        alternative_prices = offer.get('alternativePrices', [])
+        alternative_price_iris = []
         
+        for alt_price in alternative_prices:
+            alt_oid = alt_price.get('shopOfferId')
+            if not alt_oid:
+                continue
+                
+            # Add alternative price to the list for linking to main offer
+            alt_price_iri = get_alternative_price_iri(alt_oid)
+            alternative_price_iris.append(alt_price_iri)
+            
+            # Process alternative price
+            ttl_lines += process_offer_or_alternative_price(alt_oid, alt_price, is_alternative=True)
+            
+            # Process inventory for alternative price
+            alt_stock = alt_price.get('stock', {})
+            ttl_lines += process_offer_inventory(alt_oid, alt_stock, alt_price.get('name', ''), is_alternative=True)
+        
+        # Link main offer to its alternative prices
+        if alternative_price_iris:
+            main_offer_iri = get_offer_iri(oid)
+            ttl_lines.append(f'{main_offer_iri} findme:hasAlternativePrice {", ".join(alternative_price_iris)} .\n')
+
         # Store Node
+        store = offer.get('store')
         if store:
             ttl_lines.append(f'{get_store_iri(store["id"])} a schema:Organization ;')
             ttl_lines.append(f'    schema:name {qstr(store["name"])} ;')
@@ -442,11 +518,15 @@ def process_file(json_path):
             if payment.get('providers'):
                 for prov in payment['providers']:
                     ttl_lines.append(f'    schema:paymentAccepted {get_payment_provider_iri(prov["name"])} ;')
+
             if payment.get('options'):
                 for opt in payment['options']:
-                    ttl_lines.append(f'    findme:paymentOptions {get_payment_option_iri(opt["name"])} ;')
-            
+                    opt_name = opt['name']
+                    ttl_lines.append(f'    findme:paymentOptions {get_payment_option_iri(opt_name)} ;')
+                    encountered_payment_options.add(opt_name)
+
             ttl_lines[-1] = ttl_lines[-1].rstrip(' ;') + ' .\n'
+
             
             # Store rating node
             if store.get('userReviewSummary'):
@@ -459,8 +539,8 @@ def process_file(json_path):
     # Similar Products
     ttl_lines += render_similar_products(product.get('popularProducts', []))
     
-    # Payment Options
-    ttl_lines += render_payment_options()
+    # Payment Options (dynamic)
+    ttl_lines += render_dynamic_payment_options(encountered_payment_options)
     
     return '\n'.join(ttl_lines)
 
